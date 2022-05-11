@@ -2,25 +2,30 @@ package controller
 
 import(
 	"github.com/labstack/echo"
-	"github.com/jinzhu/gorm"
-	"github.com/Quddus1916/GO_BACKEND_SQL/database"
+	//"github.com/jinzhu/gorm"
+	//"github.com/Quddus1916/GO_BACKEND_SQL/database"
+	"github.com/Quddus1916/GO_BACKEND_SQL/models"
+	"net/http"
 )
 
-type User struct{
-	gorm.Model
-	Id      int8  `gorm:"" json:"id"`
-	Name    string `json:"name"`
-	Address string `json:"address"`
-}
 
-var db *gorm.DB
 
-func init(){
-	database.Connect()
-	db = database.GetDB()
-
-}
 
 func CreateUser(c echo.Context) error{
+	user := new(models.User)
+	err:= c.Bind(user)
+	if err!= nil{
+		msg:= " failed to bind data"
+		return c.JSON(http.StatusBadRequest, msg )
+	}
+	res:= models.CreateUser(user)
+	if res == nil{
+		msg:= " failed to load data from db"
+		return c.JSON(http.StatusInternalServerError, msg )
 
+	}
+
+	return c.JSON(http.StatusOK, res)
+
+    
 }

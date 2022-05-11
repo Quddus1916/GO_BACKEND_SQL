@@ -3,6 +3,7 @@ package main
 import(
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/Quddus1916/GO_BACKEND_SQL/controller"
 
 )
 
@@ -14,7 +15,7 @@ func main (){
 	  }))
 	 
 
-	e.GET("/users",controller.Users)
+	//e.GET("/users",controller.Users)
 	e.POST("/users",controller.CreateUser)
 	
 	e.Start(":8080")
