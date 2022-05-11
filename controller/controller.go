@@ -3,11 +3,21 @@ package controller
 import(
 	"github.com/labstack/echo"
 	//"github.com/jinzhu/gorm"
-	//"github.com/Quddus1916/GO_BACKEND_SQL/database"
+	"github.com/Quddus1916/GO_BACKEND_SQL/database"
 	"github.com/Quddus1916/GO_BACKEND_SQL/models"
 	"net/http"
 )
+var Users[] models.User
+func GetUsers(c echo.Context) error{
+	
+	 Users := models.GetAllUsers() 
+	 if Users == nil{
+		 msg:= "failed to fetch data"
+		 return c.JSON(http.StatusInternalServerError, msg )
+	 }
 
+	 return  c.JSON(http.StatusInternalServerError, Users)
+}
 
 
 
@@ -19,6 +29,8 @@ func CreateUser(c echo.Context) error{
 		return c.JSON(http.StatusBadRequest, msg )
 	}
 	res:= models.CreateUser(user)
+	var deferrer = database.GetDB()
+	defer deferrer.Close()
 	if res == nil{
 		msg:= " failed to load data from db"
 		return c.JSON(http.StatusInternalServerError, msg )

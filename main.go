@@ -15,8 +15,8 @@ func main (){
 	  }))
 	 
 
-	//e.GET("/users",controller.Users)
-	e.POST("/users",controller.CreateUser)
+	e.GET("/users",controller.GetUsers)
+	e.POST("/user",controller.CreateUser)
 	
 	e.Start(":8080")
 	 

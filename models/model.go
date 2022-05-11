@@ -3,6 +3,7 @@ package models
 import(
 	"github.com/jinzhu/gorm"
 	"github.com/Quddus1916/GO_BACKEND_SQL/database"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var db *gorm.DB
@@ -19,11 +20,13 @@ func init(){
 	database.Connect()
 	
 	db = database.GetDB()
+	//table name is defined through this
 	db.AutoMigrate(&User{})
 }
 func  CreateUser(user *User) *User{
 	db.NewRecord(user)
 	db.Create(&user)
+	
 	return user
 }
 
