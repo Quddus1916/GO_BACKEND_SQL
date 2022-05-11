@@ -16,7 +16,7 @@ func GetUsers(c echo.Context) error{
 		 return c.JSON(http.StatusInternalServerError, msg )
 	 }
 
-	 return  c.JSON(http.StatusInternalServerError, Users)
+	 return  c.JSON(http.StatusOK, Users)
 }
 
 
