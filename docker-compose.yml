@@ -1,0 +1,15 @@
+version: "3"
+
+service:
+ 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST: root
+      - PMA_PASSWORD: ${quddus1916}
+    restart: unless-stopped
+
+volumes:
+  - mysql
