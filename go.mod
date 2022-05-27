@@ -1,4 +1,4 @@
-module github.com/Quddus1916/GO_BACKEND_SQL
+module Quddus1916/GO_BACKEND_SQL
 
 go 1.18
 

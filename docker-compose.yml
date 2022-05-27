@@ -1,15 +1,29 @@
-version: "3"
-
-service:
- 
-  phpmyadmin:
-    image: phpmyadmin:latest
+version: "3.9" # optional since v1.27.0
+services:
+  server:
+    container_name: test_server
+    build: .
     ports:
-      - 8080:80
+      - 3000:8080
+    links:
+      - mysql
+    volumes:
+      - my_data:/usr/src/app
+   
+  mysql:
+    container_name: test_mysql
+    hostname: mysql
+    image: mysql
     environment:
-      - PMA_HOST: root
-      - PMA_PASSWORD: ${quddus1916}
-    restart: unless-stopped
+          MYSQL_ROOT_PASSWORD: 12345
+          MYSQL_DATABASE: testdatabase
+          MYSQL_USER: nafiul
+          MYSQL_PASSWORD: quddus1916
+    ports:
+      - 3306:3306
+    
+
 
 volumes:
-  - mysql
+  my_data:
+

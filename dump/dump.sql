@@ -1,0 +1,7 @@
+CREATE TABLE Userdata (
+    U_ID VARCHAR(20) NOT NULL,
+    UName  VARCHAR(20) NOT NULL,
+    Uaddress VARCHAR(20) NOT NULL,
+     PRIMARY KEY (ID)
+   
+);

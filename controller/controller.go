@@ -3,12 +3,12 @@ package controller
 import (
 	"github.com/labstack/echo"
 	//"github.com/jinzhu/gorm"
-	"github.com/Quddus1916/GO_BACKEND_SQL/database"
-	"github.com/Quddus1916/GO_BACKEND_SQL/models"
+	"Quddus1916/GO_BACKEND_SQL/database"
+	"Quddus1916/GO_BACKEND_SQL/models"
 	"net/http"
 )
 
-var Users []models.User
+var Users []models.Userdata
 
 func GetUsers(c echo.Context) error {
 
@@ -22,7 +22,7 @@ func GetUsers(c echo.Context) error {
 }
 
 func CreateUser(c echo.Context) error {
-	user := new(models.User)
+	user := new(models.Userdata)
 	err := c.Bind(user)
 	if err != nil {
 		msg := " failed to bind data"

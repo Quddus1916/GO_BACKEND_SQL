@@ -1,18 +1,19 @@
- FROM golang:1.18.1-alpine
+ FROM golang:1.18
 #destination
- WORKDIR /dockerapp
+ WORKDIR /app
 #copy mod and sum for dependencies
  COPY go.mod ./
  COPY go.sum ./
 #download dependencies
- RUN apk add git
+ 
  RUN go mod download
- 
- 
-
 #copy all other files 
- COPY *.go ./
+ COPY . .
 
- RUN go build -o /docker-gs-ping
 
- CMD ["/docker-gs-ping"]
+
+
+ RUN go build -o /docker-echo-app
+
+ CMD ["/docker-echo-app"]
+
